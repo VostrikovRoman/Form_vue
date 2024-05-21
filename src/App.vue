@@ -4,122 +4,6 @@ import { useQuasar } from 'quasar'
 import {ref} from 'vue'
 
 export default {
-  data() {
-
-    return {
-      elems: [
-        {
-          id: 0,
-          title: 'Фамилия',
-          label: '*',
-          placeholder: 'Введите фамилию',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска',
-          type: 'surname'
-        },
-        {
-          id: 1,
-          title: 'Имя',
-          label: '*',
-          placeholder: 'Введите имя',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска',
-          type: 'name'
-        },
-        {
-          id: 2,
-          title: 'Отчество',
-          label: '',
-          placeholder: 'Введите отчество',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска',
-          type: 'lastname'
-        },
-        {
-          id: 3,
-          title: 'Место рождения',
-          label: '*',
-          placeholder: 'Место рождения',
-          block_size: 'form_data big',
-          overview: 'Рекомендуется писать как в паспорте'
-        },
-        {
-          id: 4,
-          title: 'Email',
-          label: '*',
-          placeholder: 'Введите email',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска'
-        },
-        {
-          id: 5,
-          title: 'Дата рождения',
-          label: '*',
-          placeholder: 'Дата рождения',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска'
-        },
-        {
-          id: 6,
-          title: 'СНИЛС (не обязательно)',
-          label: '',
-          placeholder: 'Введите СНИЛС',
-          block_size: 'form_data small',
-          overview: 'Укажите не менее 3х символов для поиска'
-        },
-      ],
-      elems_2: [
-        {
-          id: 7,
-          title: 'Серия и номер паспорта',
-          label: '*',
-          placeholder: 'Номер паспорта',
-          block_size: 'form_data small',
-          overview: ''
-        },
-        {
-          id: 8,
-          title: 'Дата выдачи',
-          label: '*',
-          placeholder: 'Дата выдачи',
-          block_size: 'form_data small',
-          overview: ''
-        },
-        {
-          id: 9,
-          title: 'Код подразделения',
-          label: '*',
-          placeholder: 'Код подразделения',
-          block_size: 'form_data small',
-          overview: ''
-        },
-        {
-          id: 10,
-          title: 'Кем выдан',
-          label: '*',
-          placeholder: 'Кем выдан',
-          block_size: 'form_data medium',
-          overview: ''
-        },
-        {
-          id: 11,
-          title: 'Адрес регистрации',
-          label: '*',
-          placeholder: 'Адрес регистрации',
-          block_size: 'form_data medium',
-          overview: 'Укажите не менее 3х символов для поиска'
-        },
-        {
-          id: 12,
-          title: 'ИНН',
-          label: '*',
-          placeholder: 'Введите ИНН',
-          block_size: 'form_data small',
-          overview: ''
-        }
-      ]
-    }
-  },
   methods: {
     Validation() {
       alert("Hello!");
@@ -129,9 +13,33 @@ export default {
     const $q = useQuasar()
 
     const surname = ref(null)
+    const name = ref(null)
+    const lastname = ref(null)
+    const birth_place = ref(null)
+    const email = ref(null)
+    const birthdate = ref(null)
+    const snils = ref(null)
+    const passport = ref(null)
+    const give_date = ref(null)
+    const code = ref(null)
+    const who_give = ref(null)
+    const address = ref(null)
+    const inn = ref(null)
 
     return {
       surname,
+      name,
+      lastname,
+      birth_place,
+      email,
+      birthdate,
+      snils,
+      passport,
+      give_date,
+      code,
+      who_give,
+      address,
+      inn,
 
       onSubmit() {
 
@@ -145,53 +53,132 @@ export default {
 
 <template>
   <body>
-  <q-form @submit="onSubmit" class="q-gutter-md">
-    <q-input
-      filled
-      v-model='surname'
-
-      placeholder='Укажите не менее 3х символов для поиска'
-      lazy-rules :rules="[ val => val && val.length > 0 || 'Please type something']"/>
-  </q-form>
   <div class="step">
     <div class="text title_step">Шаг 3. Укажите персональную информацию</div>
-    <div class="form_elem">
-      <p class="title_elem text">Фамилия<span class="label">*</span></p>
-
-      <p class="overview">Укажите не менее 3х символов для поиска</p>
-    </div>
+    <q-form @submit="onSubmit" class="q-gutter-md" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
+      <div class="form_elem">
+        <p class="title_elem text">Фамилия<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='surname'
+          placeholder='Введите фамилию'
+          lazy-rules :rules="[ val => val && val.length >= 3 || 'Укажите не менее 3х символов для поиска']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Имя<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='name'
+          placeholder='Введите имя'
+          lazy-rules :rules="[ val => val && val.length >= 3 || 'Укажите не менее 3х символов для поиска']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Отчество</p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='lastname'
+          placeholder='Введите фамилию'/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Место рождения<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data big"
+          v-model='birth_place'
+          placeholder='Введите место рождения'
+          lazy-rules :rules="[ val => val && val.length >= 3 || 'Рекомендуется писать как в паспорте']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Email<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='email'
+          placeholder='Введите email'
+          lazy-rules :rules="[ val => val && val.length >= 3 && val.count('@')>0 || 'Укажите не менее 3х символов для поиска']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Дата рождения<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='birthdate'
+          placeholder='Введите дату рождения'
+          lazy-rules :rules="[ val => val && val.length > 0 || 'Укажите не менее 3х символов для поиска']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">СНИЛС (не обязательно)</p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='snils'
+          placeholder='Введите СНИЛС'/>
+      </div>
+    </q-form>
   </div>
   <div class="step">
-    <div class="text title_step">Шаг 3. Укажите паспортные данные, ИНН</div>
-    <div class="form_elem" v-for="elem in elems_2" :key="elem">
-      <p class="title_elem text">{{elem.title}}<span class="label">{{elem.label}}</span></p>
-      <input
-        v-bind:id=elem.id
-        v-bind:class=elem.block_size
-        v-bind:placeholder=elem.placeholder>
-      <p class="overview">{{elem.overview}}</p>
-    </div>
+    <div class="text title_step">Шаг 4. Укажите паспортные данные, ИНН</div>
+    <q-form @submit="onSubmit" class="q-gutter-md">
+      <div class="form_elem">
+        <p class="title_elem text">Серия и номер паспорта<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='passport'
+          placeholder='Введите серию и номер паспорта'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Дата выдачи<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='give_date'
+          placeholder='Введите дату выдачи'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Код подразделения<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='code'
+          placeholder='Введите код подразделения'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Кем выдан<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data medium"
+          v-model='who_give'
+          placeholder='Кем выдан'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">Адрес регистрации<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data medium"
+          v-model='address'
+          placeholder='Введите адрес регистрации'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+      <div class="form_elem">
+        <p class="title_elem text">ИНН<span class="label">*</span></p>
+        <q-input
+          outlined
+          class="form_data small"
+          v-model='inn'
+          placeholder='Введите ИНН'
+          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+      </div>
+    </q-form>
   </div>
   <q-btn type="submit"  class="send_butt" label="Отправить"/>
-<!--  </q-form>-->
-  <q-form
-    @submit="onSubmit"
-    class="q-gutter-md"
-  >
-    <q-input
-      filled
-      v-model="surname"
-      label="Your name *"
-      hint="Name and surname"
-      lazy-rules
-      :rules="[ val => val && val.length > 0 || 'Please type something']"
-    />
-    <div>
-      <q-btn label="Submit" type="submit" color="primary"/>
-    </div>
-  </q-form>
-
-
   </body>
 </template>
 
@@ -202,26 +189,26 @@ export default {
   font-size: 25px;
   font-weight: bold;
   color: #393939;
-  padding-bottom: 10px;
 }
 .title_step{
   border-bottom: dotted 5px #87a3a5;
+  margin-bottom: 20px;
 }
 .step{
   position: relative;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-bottom: 40px;
   margin-top: 40px;
 }
 .form_elem{
   display: inline-grid;
   margin-right: 20px;
-  margin-top: 20px;
 }
 .title_elem{
   font-size: 18px;
   width: fit-content;
   height: fit-content;
+  margin-bottom: 5px;
 }
 .label{
   color:red;
@@ -230,12 +217,12 @@ export default {
   margin-left: 5px;
 }
 .form_data{
-  height: 60px;
+  /*height: 60px;
   border: solid 2px #b0d2d5;
   border-radius: 15px;
   font-size: 15px;
   padding-left: 20px;
-  margin-top: -15px;
+  margin-top: -15px;*/
 }
 .overview{
   margin-left: 20px;
@@ -247,10 +234,10 @@ export default {
   width: 400px;
 }
 .form_data.medium{
-  width: 610px;
+  width: 620px;
 }
 .form_data.big{
-  width: 1240px;
+  width: 1270px;
 }
 .form_data.error{
   border:solid 2px #ff7c7c;
@@ -269,10 +256,7 @@ export default {
   font-weight: bold;
   transition: 0.5s;
 }
-/*.q-field--standard .q-field__control:before{
+.q-field__bottom row items-start q-field__bottom--animated{
   display: none;
 }
-.q-field--standard .q-field__control:after{
-  display: none;
-}*/
 </style>
