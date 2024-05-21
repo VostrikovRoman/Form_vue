@@ -12,6 +12,7 @@ export default {
   setup() {
     const $q = useQuasar()
 
+    const form = ref()
     const surname = ref(null)
     const name = ref(null)
     const lastname = ref(null)
@@ -40,25 +41,32 @@ export default {
       who_give,
       address,
       inn,
+      form,
 
-      onSubmit() {
+      async onSubmit() {
+        const success = await form.value.validate();
+        if (success) {
+          alert("success");
+        } else {
+          alert("fail");
+        }
+      }
 
-      },
     }
-
-
   }
 }
 </script>
 
 <template>
   <body>
+
   <div class="step">
     <div class="text title_step">Шаг 3. Укажите персональную информацию</div>
-    <q-form @submit="onSubmit" class="q-gutter-md" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
+    <q-form ref="form" id="form" @submit="onSubmit" class="q-gutter-md" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
       <div class="form_elem">
         <p class="title_elem text">Фамилия<span class="label">*</span></p>
         <q-input
+          type="name"
           outlined
           class="form_data small"
           v-model='surname'
@@ -68,6 +76,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Имя<span class="label">*</span></p>
         <q-input
+          type="name"
           outlined
           class="form_data small"
           v-model='name'
@@ -77,6 +86,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Отчество</p>
         <q-input
+          type="name"
           outlined
           class="form_data small"
           v-model='lastname'
@@ -85,7 +95,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Место рождения<span class="label">*</span></p>
         <q-input
-          outlined
+          type="text" outlined
           class="form_data big"
           v-model='birth_place'
           placeholder='Введите место рождения'
@@ -94,15 +104,17 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Email<span class="label">*</span></p>
         <q-input
+          type="email"
           outlined
           class="form_data small"
           v-model='email'
           placeholder='Введите email'
-          lazy-rules :rules="[ val => val && val.length >= 3 && val.count('@')>0 || 'Укажите не менее 3х символов для поиска']"/>
+          lazy-rules :rules="[ val => val && val.length >= 3|| 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem">
         <p class="title_elem text">Дата рождения<span class="label">*</span></p>
         <q-input
+          type="date"
           outlined
           class="form_data small"
           v-model='birthdate'
@@ -112,6 +124,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">СНИЛС (не обязательно)</p>
         <q-input
+          type="text"
           outlined
           class="form_data small"
           v-model='snils'
@@ -125,6 +138,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Серия и номер паспорта<span class="label">*</span></p>
         <q-input
+          type="text"
           outlined
           class="form_data small"
           v-model='passport'
@@ -134,6 +148,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Дата выдачи<span class="label">*</span></p>
         <q-input
+          type="date"
           outlined
           class="form_data small"
           v-model='give_date'
@@ -143,6 +158,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Код подразделения<span class="label">*</span></p>
         <q-input
+          type="number"
           outlined
           class="form_data small"
           v-model='code'
@@ -152,6 +168,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Кем выдан<span class="label">*</span></p>
         <q-input
+          type="text"
           outlined
           class="form_data medium"
           v-model='who_give'
@@ -161,6 +178,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">Адрес регистрации<span class="label">*</span></p>
         <q-input
+          type="text"
           outlined
           class="form_data medium"
           v-model='address'
@@ -170,6 +188,7 @@ export default {
       <div class="form_elem">
         <p class="title_elem text">ИНН<span class="label">*</span></p>
         <q-input
+          type="number"
           outlined
           class="form_data small"
           v-model='inn'
@@ -178,7 +197,7 @@ export default {
       </div>
     </q-form>
   </div>
-  <q-btn type="submit"  class="send_butt" label="Отправить"/>
+  <q-btn @click="onSubmit" class="send_butt" label="Отправить"/>
   </body>
 </template>
 
