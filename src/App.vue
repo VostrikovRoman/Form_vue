@@ -1,54 +1,201 @@
 
 <script>
+import { useQuasar } from 'quasar'
+import {ref} from 'vue'
+
 export default {
-  data(){
+  data() {
+
     return {
       elems: [
-        {id: 0, title: 'Фамилия', label: '*', placeholder: 'Введите фамилию', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска'},
-        {id: 1, title: 'Имя', label: '*', placeholder: 'Введите имя', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска', value: ''},
-        {id: 2, title: 'Отчество', label: '', placeholder: 'Введите отчество', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска'},
-        {id: 3, title: 'Место рождения', label: '*', placeholder: 'Место рождения', block_size: 'form_data big', overview: 'Рекомендуется писать как в паспорте'},
-        {id: 4, title: 'Email', label: '*', placeholder: 'Введите email', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска'},
-        {id: 5, title: 'Дата рождения', label: '*', placeholder: 'Дата рождения', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска'},
-        {id: 6, title: 'СНИЛС (не обязательно)', label: '', placeholder: 'Введите СНИЛС', block_size: 'form_data small', overview: 'Укажите не менее 3х символов для поиска'},
+        {
+          id: 0,
+          title: 'Фамилия',
+          label: '*',
+          placeholder: 'Введите фамилию',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска',
+          type: 'surname'
+        },
+        {
+          id: 1,
+          title: 'Имя',
+          label: '*',
+          placeholder: 'Введите имя',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска',
+          type: 'name'
+        },
+        {
+          id: 2,
+          title: 'Отчество',
+          label: '',
+          placeholder: 'Введите отчество',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска',
+          type: 'lastname'
+        },
+        {
+          id: 3,
+          title: 'Место рождения',
+          label: '*',
+          placeholder: 'Место рождения',
+          block_size: 'form_data big',
+          overview: 'Рекомендуется писать как в паспорте'
+        },
+        {
+          id: 4,
+          title: 'Email',
+          label: '*',
+          placeholder: 'Введите email',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска'
+        },
+        {
+          id: 5,
+          title: 'Дата рождения',
+          label: '*',
+          placeholder: 'Дата рождения',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска'
+        },
+        {
+          id: 6,
+          title: 'СНИЛС (не обязательно)',
+          label: '',
+          placeholder: 'Введите СНИЛС',
+          block_size: 'form_data small',
+          overview: 'Укажите не менее 3х символов для поиска'
+        },
       ],
       elems_2: [
-        {id: 7, title: 'Серия и номер паспорта', label: '*', placeholder: 'Номер паспорта', block_size: 'form_data small', overview: ''},
-        {id: 8, title: 'Дата выдачи', label: '*', placeholder: 'Дата выдачи', block_size: 'form_data small', overview: ''},
-        {id: 9, title: 'Код подразделения', label: '*', placeholder: 'Код подразделения', block_size: 'form_data small', overview: ''},
-        {id: 10, title: 'Кем выдан', label: '*', placeholder: 'Кем выдан', block_size: 'form_data medium', overview: ''},
-        {id: 11, title: 'Адрес регистрации', label: '*', placeholder: 'Адрес регистрации', block_size: 'form_data medium', overview: 'Укажите не менее 3х символов для поиска'},
-        {id: 12, title: 'ИНН', label: '*', placeholder: 'Введите ИНН', block_size: 'form_data small', overview: ''}
+        {
+          id: 7,
+          title: 'Серия и номер паспорта',
+          label: '*',
+          placeholder: 'Номер паспорта',
+          block_size: 'form_data small',
+          overview: ''
+        },
+        {
+          id: 8,
+          title: 'Дата выдачи',
+          label: '*',
+          placeholder: 'Дата выдачи',
+          block_size: 'form_data small',
+          overview: ''
+        },
+        {
+          id: 9,
+          title: 'Код подразделения',
+          label: '*',
+          placeholder: 'Код подразделения',
+          block_size: 'form_data small',
+          overview: ''
+        },
+        {
+          id: 10,
+          title: 'Кем выдан',
+          label: '*',
+          placeholder: 'Кем выдан',
+          block_size: 'form_data medium',
+          overview: ''
+        },
+        {
+          id: 11,
+          title: 'Адрес регистрации',
+          label: '*',
+          placeholder: 'Адрес регистрации',
+          block_size: 'form_data medium',
+          overview: 'Укажите не менее 3х символов для поиска'
+        },
+        {
+          id: 12,
+          title: 'ИНН',
+          label: '*',
+          placeholder: 'Введите ИНН',
+          block_size: 'form_data small',
+          overview: ''
+        }
       ]
     }
+  },
+  methods: {
+    Validation() {
+      alert("Hello!");
+    }
+  },
+  setup() {
+    const $q = useQuasar()
+
+    const surname = ref(null)
+
+    return {
+      surname,
+
+      onSubmit() {
+
+      },
+    }
+
+
   }
-
-
 }
 </script>
 
 <template>
   <body>
+  <q-form @submit="onSubmit" class="q-gutter-md">
+    <q-input
+      filled
+      v-model='surname'
+
+      placeholder='Укажите не менее 3х символов для поиска'
+      lazy-rules :rules="[ val => val && val.length > 0 || 'Please type something']"/>
+  </q-form>
   <div class="step">
     <div class="text title_step">Шаг 3. Укажите персональную информацию</div>
-    <div class="form_elem" v-for="elem in elems" :key="elem">
-      <p class="title_elem text">{{elem.title}}<span class="label">{{elem.label}}</span></p>
-      <input v-bind:id=elem.id v-bind:class=elem.block_size v-bind:placeholder=elem.placeholder>
-      <p class="overview">{{elem.overview}}</p>
+    <div class="form_elem">
+      <p class="title_elem text">Фамилия<span class="label">*</span></p>
+
+      <p class="overview">Укажите не менее 3х символов для поиска</p>
     </div>
   </div>
   <div class="step">
     <div class="text title_step">Шаг 3. Укажите паспортные данные, ИНН</div>
     <div class="form_elem" v-for="elem in elems_2" :key="elem">
       <p class="title_elem text">{{elem.title}}<span class="label">{{elem.label}}</span></p>
-      <input v-bind:id=elem.id v-bind:class=elem.block_size v-bind:placeholder=elem.placeholder>
+      <input
+        v-bind:id=elem.id
+        v-bind:class=elem.block_size
+        v-bind:placeholder=elem.placeholder>
       <p class="overview">{{elem.overview}}</p>
     </div>
   </div>
-  <button class="send_butt" >Отправить</button>
+  <q-btn type="submit"  class="send_butt" label="Отправить"/>
+<!--  </q-form>-->
+  <q-form
+    @submit="onSubmit"
+    class="q-gutter-md"
+  >
+    <q-input
+      filled
+      v-model="surname"
+      label="Your name *"
+      hint="Name and surname"
+      lazy-rules
+      :rules="[ val => val && val.length > 0 || 'Please type something']"
+    />
+    <div>
+      <q-btn label="Submit" type="submit" color="primary"/>
+    </div>
+  </q-form>
+
 
   </body>
 </template>
+
+
 
 <style >
 .text{
@@ -118,14 +265,14 @@ export default {
   background: #87a3a5;
   color: white;
   font-size: 20px;
-  border: 0px;
   border-radius: 10px;
   font-weight: bold;
   transition: 0.5s;
 }
-.send_butt:hover{
-  transform: scale(1.05) translate(-47%, 0px);
-  transition: 0.5s;
+/*.q-field--standard .q-field__control:before{
+  display: none;
 }
-
+.q-field--standard .q-field__control:after{
+  display: none;
+}*/
 </style>
