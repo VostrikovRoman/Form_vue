@@ -3,6 +3,9 @@ import { useQuasar } from 'quasar'
 import {ref} from 'vue'
 
 export default {
+  components: {
+
+  },
   setup() {
 
     const form = ref();
@@ -51,144 +54,175 @@ export default {
 
 <template>
   <body>
+  <q-form ref="form" id="form" @submit="onSubmit" class="q-gutter-md" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
   <div class="step">
     <div class="text title_step">Шаг 3. Укажите персональную информацию</div>
-    <q-form ref="form" id="form" @submit="onSubmit" class="q-gutter-md" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
       <div class="form_elem small">
         <p class="title_elem text">Фамилия<span class="label">*</span></p>
         <q-input
-          type="name"
+          model-value = ""
+          ref="inputRef"
+          type="text"
           outlined
           class="form_data"
-          v-model='surname'
+          v-model="surname"
           placeholder='Введите фамилию'
-          lazy-rules :rules="[ val => val && val.length >= 3 || 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Имя<span class="label">*</span></p>
         <q-input
-          type="name"
+          model-value = ""
+          ref="inputRef"
+          type="text"
           outlined
           class="form_data"
-          v-model='name'
+          v-model="name"
           placeholder='Введите имя'
-          lazy-rules :rules="[ val => val && val.length >= 3 || 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Отчество</p>
         <q-input
-          type="name"
+          model-value = ""
+          ref="inputRef"
+          type="text"
           outlined
           class="form_data"
-          v-model='lastname'
-          placeholder='Введите фамилию'/>
+          v-model="lastname"
+          placeholder='Введите отчество'/>
       </div>
       <div class="form_elem big">
         <p class="title_elem text">Место рождения<span class="label">*</span></p>
         <q-input
-          type="text" outlined
+          model-value = ""
+          ref="inputRef"
+          type="text"
+          outlined
           class="form_data"
-          v-model='birth_place'
+          v-model="birth_place"
           placeholder='Введите место рождения'
-          lazy-rules :rules="[ val => val && val.length >= 3 || 'Рекомендуется писать как в паспорте']"/>
+          :rules="[ val => val.length > 2 || 'Рекомендуется писать как в паспорте']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Email<span class="label">*</span></p>
         <q-input
-          type="email"
+          ref="inputRef"
+          type="text"
           outlined
           class="form_data"
-          v-model='email'
+          v-model="email"
           placeholder='Введите email'
-          lazy-rules :rules="[ val => val && val.length >= 3|| 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Дата рождения<span class="label">*</span></p>
         <q-input
-          type="date"
+          ref="inputRef"
+          type="text"
           outlined
           class="form_data"
-          v-model='birthdate'
+          v-model="birthdate"
           placeholder='Введите дату рождения'
-          lazy-rules :rules="[ val => val && val.length > 0 || 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2]"
+          />
       </div>
       <div class="form_elem small">
         <p class="title_elem text">СНИЛС (не обязательно)</p>
         <q-input
+          ref="inputRef"
           type="text"
           outlined
           class="form_data"
-          v-model='snils'
+          mask="###.###.### ##"
+          unmasked-value
+          fill-mask
+          v-model="snils"
           placeholder='Введите СНИЛС'/>
       </div>
-    </q-form>
   </div>
   <div class="step">
     <div class="text title_step">Шаг 4. Укажите паспортные данные, ИНН</div>
-    <q-form @submit="onSubmit" class="q-gutter-md">
       <div class="form_elem small">
         <p class="title_elem text">Серия и номер паспорта<span class="label">*</span></p>
         <q-input
+          ref="inputRef"
           type="text"
           outlined
+          mask="#### ######"
+          fill-mask
+          unmasked-value
           class="form_data"
-          v-model='passport'
-          placeholder='Введите серию и номер паспорта'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
+          v-model="passport"
+          placeholder='Введите email'
+          :rules="[ val => val.length > 9]"/>
       </div>
-      <div class="form_elem small">
-        <p class="title_elem text">Дата выдачи<span class="label">*</span></p>
-        <q-input
-          type="date"
-          outlined
-          class="form_data"
-          v-model='give_date'
-          placeholder='Введите дату выдачи'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
-      </div>
-      <div class="form_elem small">
-        <p class="title_elem text">Код подразделения<span class="label">*</span></p>
-        <q-input
-          type="number"
-          outlined
-          class="form_data"
-          v-model='code'
-          placeholder='Введите код подразделения'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
-      </div>
-      <div class="form_elem medium">
-        <p class="title_elem text">Кем выдан<span class="label">*</span></p>
-        <q-input
-          type="text"
-          outlined
-          class="form_data"
-          v-model='who_give'
-          placeholder='Кем выдан'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
-      </div>
-      <div class="form_elem medium">
-        <p class="title_elem text">Адрес регистрации<span class="label">*</span></p>
-        <q-input
-          type="text"
-          outlined
-          class="form_data"
-          v-model='address'
-          placeholder='Введите адрес регистрации'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
-      </div>
-      <div class="form_elem small">
-        <p class="title_elem text">ИНН<span class="label">*</span></p>
-        <q-input
-          type="number"
-          outlined
-          class="form_data"
-          v-model='inn'
-          placeholder='Введите ИНН'
-          lazy-rules :rules="[ val => val && val.length > 0 || '']"/>
-      </div>
-    </q-form>
-  </div>
-  <q-btn @click="onSubmit" class="send_butt" label="Отправить"/>
+    <div class="form_elem small">
+      <p class="title_elem text">Дата выдачи<span class="label">*</span></p>
+      <q-input
+        ref="inputRef"
+        type="text"
+        outlined
+        class="form_data"
+        v-model="give_date"
+        placeholder='Введите дату выдачи'
+        :rules="[ val => val.length > 2]"/>
+    </div>
+    <div class="form_elem small">
+      <p class="title_elem text">Код подразделения<span class="label">*</span></p>
+      <q-input
+        ref="inputRef"
+        type="text"
+        outlined
+        mask="###-###"
+        fill-mask
+        unmasked-value
+        class="form_data"
+        v-model="code"
+        placeholder='Введите код подразделения'
+        :rules="[ val => val.length > 5]"/>
+    </div>
+    <div class="form_elem medium">
+      <p class="title_elem text">Кем выдан<span class="label">*</span></p>
+      <q-input
+        ref="inputRef"
+        type="text"
+        outlined
+        class="form_data"
+        v-model="who_give"
+        placeholder='Введите кем выдан паспорт'
+        :rules="[ val => val.length > 2]"/>
+    </div>
+    <div class="form_elem medium">
+      <p class="title_elem text">Адрес регистрации<span class="label">*</span></p>
+      <q-input
+        ref="inputRef"
+        type="text"
+        outlined
+        class="form_data"
+        v-model="address"
+        placeholder='Введите адрес регистрации'
+        :rules="[ val => val.length > 2]"/>
+    </div>
+    <div class="form_elem small">
+      <p class="title_elem text">ИНН<span class="label">*</span></p>
+      <q-input
+        ref="inputRef"
+        type="text"
+        outlined
+        mask="## ## ###### ##"
+        fill-mask
+        unmasked-value
+        class="form_data"
+        v-model="inn"
+        placeholder='Введите ИНН'
+        :rules="[ val => val.length > 11]"/>
+    </div>
+    </div>
+    <q-btn @click="onSubmit" class="send_butt" label="Отправить"/>
+  </q-form>
+
+
   </body>
 </template>
 
