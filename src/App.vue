@@ -113,18 +113,20 @@ export default {
           class="form_data"
           v-model="email"
           placeholder='Введите email'
-          :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2 && val.count('@') > 0 || 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Дата рождения<span class="label">*</span></p>
         <q-input
           ref="inputRef"
-          type="text"
+          type="date"
           outlined
           class="form_data"
+          max="9999-12-31"
+          min="1000-01-01"
           v-model="birthdate"
           placeholder='Введите дату рождения'
-          :rules="[ val => val.length > 2]"
+          :rules="[ val => val.length > 9]"
           />
       </div>
       <div class="form_elem small">
@@ -161,12 +163,14 @@ export default {
       <p class="title_elem text">Дата выдачи<span class="label">*</span></p>
       <q-input
         ref="inputRef"
-        type="text"
+        type="date"
         outlined
         class="form_data"
+        max="9999-12-31"
+        min="1000-01-01"
         v-model="give_date"
         placeholder='Введите дату выдачи'
-        :rules="[ val => val.length > 2]"/>
+        :rules="[ val => val.length > 9]"/>
     </div>
     <div class="form_elem small">
       <p class="title_elem text">Код подразделения<span class="label">*</span></p>
