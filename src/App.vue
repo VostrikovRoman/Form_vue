@@ -113,7 +113,7 @@ export default {
           class="form_data"
           v-model="email"
           placeholder='Введите email'
-          :rules="[ val => val.length > 2 && val.count('@') > 0 || 'Укажите не менее 3х символов для поиска']"/>
+          :rules="[ val => val.length > 2 && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)) > 0 || 'Укажите не менее 3х символов для поиска']"/>
       </div>
       <div class="form_elem small">
         <p class="title_elem text">Дата рождения<span class="label">*</span></p>
