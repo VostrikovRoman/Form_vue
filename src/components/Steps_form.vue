@@ -11,6 +11,8 @@
                :overview="step.overview"
                :type="step.type"
                :mask="step.mask"
+               :max_value="step.max_value"
+               :min_value="step.min_value"
     />
   </div>
 </template>

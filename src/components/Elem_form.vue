@@ -12,8 +12,9 @@
       :mask=mask
       unmasked-value
       fill-mask
-      max="9999-12-31"
-      min="1000-01-01"
+      :max=max_value
+      :min=min_value
+
     />
   </div>
 
@@ -45,7 +46,9 @@ export default {
     value: String,
     rules: String,
     type: Date,
-    mask: String
+    mask: String,
+    max_value: String,
+    min_value: String
   }
 }
 </script>
@@ -59,6 +62,7 @@ export default {
 .form_elem{
   display: inline-grid;
   margin-right: 20px;
+  margin-top: 20px;
 }
 .title_elem{
   font-size: 18px;
