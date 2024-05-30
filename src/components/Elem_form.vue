@@ -3,12 +3,17 @@
     <p class="title_elem text">{{title}}<span class="label">{{label}}</span></p>
     <q-input
       class="form_data"
-      type="text"
+      :type=type
       ref="inputRef"
       outlined
       :placeholder=placeholder
       v-model="value_model"
-      :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"
+      :rules="[ val => val.length > 2 || overview]"
+      :mask=mask
+      unmasked-value
+      fill-mask
+      max="9999-12-31"
+      min="1000-01-01"
     />
   </div>
 
@@ -38,7 +43,9 @@ export default {
     elem_class: String,
     overview: String,
     value: String,
-    rules: String
+    rules: String,
+    type: Date,
+    mask: String
   }
 }
 </script>

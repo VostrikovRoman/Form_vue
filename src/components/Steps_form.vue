@@ -8,6 +8,9 @@
                :label="step.label"
                :elem_class="step.class"
                :value="step.value"
+               :overview="step.overview"
+               :type="step.type"
+               :mask="step.mask"
     />
   </div>
 </template>

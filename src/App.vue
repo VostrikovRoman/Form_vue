@@ -26,8 +26,11 @@ export default {
             class: 'form_elem small',
             overview: 'Укажите не менее 3х символов для поиска',
             value: '',
-            rules: [val => val.length > 2 || "Залупа"],
-            fill: true
+            rules: [val => val.length > 2 || "Укажите не менее 3х символов для поиска"],
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Имя',
@@ -36,7 +39,11 @@ export default {
             class: 'form_elem small',
             overview: 'Укажите не менее 3х символов для поиска',
             value: '',
-            rules: 'val.length > 2'
+            rules: 'val.length > 2',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Отчество',
@@ -44,35 +51,55 @@ export default {
             placeholder: 'Введите отчество',
             class: 'form_elem small',
             value: '',
-            rules: '[val => val.length > 2 || \'Укажите не менее 3х символов для поиска\']'
+            rules: '[val => val.length > 2 || "Укажите не менее 3х символов для поиска"]',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Место рождения',
             label: '*',
             placeholder: 'Место рождения',
             class: 'form_elem big',
-            overview: 'Рекомендуется писать как в паспорте'
+            overview: 'Рекомендуется писать как в паспорте',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Email',
             label: '*',
             placeholder: 'Введите email',
             class: 'form_elem small',
-            overview: 'Укажите не менее 3х символов для поиска'
+            overview: 'Укажите не менее 3х символов для поиска',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Дата рождения',
             label: '*',
             placeholder: 'Дата рождения',
             class: 'form_elem small',
-            overview: 'Укажите не менее 3х символов для поиска'
+            overview: 'Укажите не менее 3х символов для поиска',
+            type: 'date',
+            mask:'',
+            max_value: '9999-12-31',
+            min_value: '1000-01-01'
           },
           {
             title: 'СНИЛС (не обязательно)',
             label: '',
             placeholder: 'Введите СНИЛС',
             class: 'form_elem small',
-            overview: 'Укажите не менее 3х символов для поиска'
+            overview: 'Укажите не менее 3х символов для поиска',
+            type: 'text',
+            mask:'###.###.### ##',
+            max_value: '',
+            min_value: ''
           }
         ]},
       {id: "1", overview: "Шаг 4. Укажите паспортные данные, ИНН", data: [
@@ -81,42 +108,66 @@ export default {
             label: '*',
             placeholder: 'Номер паспорта',
             class: 'form_elem small',
-            overview: ''
+            overview: '',
+            type: 'text',
+            mask:'#### ######',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Дата выдачи',
             label: '*',
             placeholder: 'Дата выдачи',
             class: 'form_elem small',
-            overview: ''
+            overview: '',
+            type: 'date',
+            mask:'',
+            max_value: '9999-12-31',
+            min_value: '1000-01-01'
           },
           {
             title: 'Код подразделения',
             label: '*',
             placeholder: 'Код подразделения',
             class: 'form_elem small',
-            overview: ''
+            overview: '',
+            type: 'text',
+            mask:'###-###',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Кем выдан',
             label: '*',
             placeholder: 'Кем выдан',
             class: 'form_elem medium',
-            overview: ''
+            overview: '',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'Адрес регистрации',
             label: '*',
             placeholder: 'Адрес регистрации',
             class: 'form_elem medium',
-            overview: 'Укажите не менее 3х символов для поиска'
+            overview: 'Укажите не менее 3х символов для поиска',
+            type: 'text',
+            mask:'',
+            max_value: '',
+            min_value: ''
           },
           {
             title: 'ИНН',
             label: '*',
             placeholder: 'Введите ИНН',
             class: 'form_elem small',
-            overview: ''
+            overview: '',
+            type: 'text',
+            mask:'## ## ###### ##',
+            max_value: '',
+            min_value: ''
           }
 
         ]}
@@ -166,4 +217,5 @@ export default {
   border-radius: 10px;
   font-weight: bold;
 }
+
 </style>
