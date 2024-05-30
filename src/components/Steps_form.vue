@@ -1,7 +1,14 @@
 <template>
   <div class="step" v-for="(step, index) in steps" :key="index">
     <div class="text title_step">{{step.overview}}</div>
-    <elem_form :frames="frames" />
+    <elem_form :frames="frames" v-for="(step, index) in step.data"
+               :key="index"
+               :title="step.title"
+               :placeholder="step.placeholder"
+               :label="step.label"
+               :elem_class="step.class"
+               :value="step.value"
+    />
   </div>
 </template>
 

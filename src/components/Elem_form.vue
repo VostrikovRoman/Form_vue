@@ -1,28 +1,44 @@
 <template>
-  <div :class="frame.class" v-for="(frame, index) in frames" :key="index">
-    <p class="title_elem text">{{ frame.title }}<span class="label">{{ frame.label }}</span></p>
+  <div :class=elem_class>
+    <p class="title_elem text">{{title}}<span class="label">{{label}}</span></p>
     <q-input
-      class="form_data small"
+      class="form_data"
       type="text"
-      :placeholder="frame.placeholder"
-      v-model="frame.value"
-      outlined
       ref="inputRef"
-      :rules='[val => val.length > 2 || frame.overview]'
+      outlined
+      :placeholder=placeholder
+      v-model="value_model"
+      :rules="[ val => val.length > 2 || 'Укажите не менее 3х символов для поиска']"
     />
   </div>
 
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
+
+  setup(){
+    const value_model = ref('');
+    return{
+      value_model
+    }
+  },
 
   props:{
     frames:{
       type: Array,
       required: true,
       id: 0
-    }
+    },
+    title: String,
+    label: String,
+    placeholder: String,
+    elem_class: String,
+    overview: String,
+    value: String,
+    rules: String
   }
 }
 </script>
