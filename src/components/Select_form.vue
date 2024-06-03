@@ -1,7 +1,7 @@
 <template>
   <div class="form_elem">
     <p class="title_elem text">{{title}}<span class="label">{{label}}</span></p>
-    <q-input
+    <q-select
       class="form_data"
       :type=type
       ref="inputRef"
@@ -14,6 +14,10 @@
       fill-mask
       :max=max_value
       :min=min_value
+      use-input
+      hide-selected
+      fill-input
+      :options="options"
     />
   </div>
 
@@ -27,7 +31,8 @@ export default {
   setup(){
     const value_model = ref('');
     return{
-      value_model
+      value_model,
+
     }
   },
 
@@ -48,7 +53,8 @@ export default {
     mask: String,
     max_value: String,
     min_value: String,
-    type_of_input: String
+    type_of_input: String,
+    options: Array
   }
 }
 </script>

@@ -29,7 +29,8 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Имя',
@@ -41,7 +42,8 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Отчество',
@@ -53,7 +55,8 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Место рождения',
@@ -65,7 +68,11 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'select',
+            options: [
+              'Абоба', 'Буба', 'Веля'
+            ]
           },
           {
             title: 'Email',
@@ -77,7 +84,8 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Дата рождения',
@@ -89,7 +97,8 @@ export default {
             type: 'date',
             mask:'',
             max_value: '9999-12-31',
-            min_value: '1000-01-01'
+            min_value: '1000-01-01',
+            type_of_input: 'input'
           },
           {
             title: 'СНИЛС (не обязательно)',
@@ -101,7 +110,8 @@ export default {
             type: 'text',
             mask:'###.###.### ##',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           }
         ]},
       {id: "1", overview: "Шаг 4. Укажите паспортные данные, ИНН", data: [
@@ -115,7 +125,8 @@ export default {
             type: 'text',
             mask:'#### ######',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Дата выдачи',
@@ -127,7 +138,8 @@ export default {
             type: 'date',
             mask:'',
             max_value: '9999-12-31',
-            min_value: '1000-01-01'
+            min_value: '1000-01-01',
+            type_of_input: 'input'
           },
           {
             title: 'Код подразделения',
@@ -139,7 +151,8 @@ export default {
             type: 'text',
             mask:'###-###',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Кем выдан',
@@ -152,7 +165,8 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           },
           {
             title: 'Адрес регистрации',
@@ -164,7 +178,11 @@ export default {
             type: 'text',
             mask:'',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'select',
+            options: [
+              'Абоба', 'Буба', 'Веля'
+            ]
           },
           {
             title: 'ИНН',
@@ -176,7 +194,8 @@ export default {
             type: 'text',
             mask:'## ## ###### ##',
             max_value: '',
-            min_value: ''
+            min_value: '',
+            type_of_input: 'input'
           }
 
         ]}

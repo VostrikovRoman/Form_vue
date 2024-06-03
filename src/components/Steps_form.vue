@@ -1,24 +1,41 @@
 <template>
   <div class="step" v-for="(step, index) in steps" :key="index">
     <div class="text title_step">{{step.overview}}</div>
-    <elem_form :frames="frames" v-for="(step, index) in step.data"
-               :key="index"
-               :title="step.title"
-               :placeholder="step.placeholder"
-               :label="step.label"
-               :elem_class="step.class"
-               :value="step.value"
-               :type="step.type"
-               :mask="step.mask"
-               :max_value="step.max_value"
-               :min_value="step.min_value"
-               :rules="step.rules"
-    />
+    <div v-for="(step, index) in step.data" :key="index" :class="step.class">
+      <elem_form :frames="step"
+                 :title="step.title"
+                 :placeholder="step.placeholder"
+                 :label="step.label"
+                 :elem_class="step.class"
+                 :value="step.value"
+                 :type="step.type"
+                 :mask="step.mask"
+                 :max_value="step.max_value"
+                 :min_value="step.min_value"
+                 :rules="step.rules"
+                 v-if="step.type_of_input === 'input'"
+      />
+      <select_form :frames="step"
+                   :title="step.title"
+                   :placeholder="step.placeholder"
+                   :label="step.label"
+                   :elem_class="step.class"
+                   :value="step.value"
+                   :type="step.type"
+                   :mask="step.mask"
+                   :max_value="step.max_value"
+                   :min_value="step.min_value"
+                   :rules="step.rules"
+                   v-else-if="step.type_of_input === 'select'"
+                   :options="step.options"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import Elem_form from "components/Elem_form.vue";
+import Select_form from "components/Select_form.vue";
 import {ref} from "vue";
 
 export default {
@@ -30,43 +47,12 @@ export default {
   },
 
   components: {
-    Elem_form,
+    Elem_form, Select_form
 
   },
   setup(){
-    const frames = ref([
-      {id: 0,
-        title: 'Фамилия',
-        label: '*',
-        placeholder: 'Введите фамилию',
-        class: 'form_elem small',
-        overview: 'Укажите не менее 3х символов для поиска',
-        value: '',
-        rules: [val => val.length > 2 || "Залупа"],
-        fill: true
-      },
-      {id: 0,
-        title: 'Имя',
-        label: '*',
-        placeholder: 'Введите имя',
-        class: 'form_elem small',
-        overview: 'Укажите не менее 3х символов для поиска',
-        value: '',
-        rules: 'val.length > 2'
-      },
-      {id: 1,
-        title: 'Отчество',
-        label: '',
-        placeholder: 'Введите отчество',
-        class: 'form_elem small',
-        value: '',
-        rules: '[val => val.length > 2 || \'Укажите не менее 3х символов для поиска\']'
-      }
-    ])
-
     return {
-      frames,
-
+      frames
     }
 
   },
@@ -75,5 +61,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.form_elem{
+  display: inline-grid;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.form_elem.small{
+  width: 30%;
+}
+.form_elem.medium{
+  width: 46.5%;
+}
+.form_elem.big{
+  width: 96%;
+}
 </style>
