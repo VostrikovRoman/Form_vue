@@ -8,13 +8,12 @@
       outlined
       :placeholder=placeholder
       v-model="value_model"
-      :rules="[ val => val.length > 2 || overview]"
+      :rules="rules"
       :mask=mask
       unmasked-value
       fill-mask
       :max=max_value
       :min=min_value
-
     />
   </div>
 
@@ -44,7 +43,7 @@ export default {
     elem_class: String,
     overview: String,
     value: String,
-    rules: String,
+    rules: Array,
     type: Date,
     mask: String,
     max_value: String,

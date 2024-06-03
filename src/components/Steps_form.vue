@@ -8,11 +8,11 @@
                :label="step.label"
                :elem_class="step.class"
                :value="step.value"
-               :overview="step.overview"
                :type="step.type"
                :mask="step.mask"
                :max_value="step.max_value"
                :min_value="step.min_value"
+               :rules="step.rules"
     />
   </div>
 </template>
