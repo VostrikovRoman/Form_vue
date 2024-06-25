@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import Elem_form from "components/Elem_form.vue";
-import Select_form from "components/Select_form.vue";
+import elem_form from "components/Elem_form.vue";
+import select_form from "components/Select_form.vue";
 import {ref} from "vue";
 
 export default {
@@ -47,7 +47,7 @@ export default {
   },
 
   components: {
-    Elem_form, Select_form
+    elem_form, select_form
 
   },
   setup(){

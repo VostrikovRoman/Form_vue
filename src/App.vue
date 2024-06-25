@@ -8,14 +8,23 @@
 <script>
 import { useQuasar } from 'quasar'
 import {ref} from 'vue'
-import Steps_form from "components/Steps_form.vue";
+import steps_form from "components/Steps_form.vue";
+import axios from "axios";
+
+
+
+
 
 export default {
   components: {
-    Steps_form
+    steps_form
   },
 
+
+
+
   setup() {
+
     const form = ref();
     const steps = ref ([
       {id: "0", overview: "Шаг 3. Укажите персональную информацию", data: [
@@ -213,6 +222,9 @@ export default {
           alert("Заполните, пожалуйста, все поля!");
         }
       }
+
+
+
     }
   }
 }
